@@ -15,13 +15,17 @@ from flask_login import (
     logout_user,
 )
 from flask_gravatar import Gravatar
+from dotenv import load_dotenv
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from deco import admin_required
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config[
     "SECRET_KEY"
-] = "4847481bf4275f0199d4ffa0009d5045cd44957a52a3f7ed6ab2fcf38a5700e0"
+] = f"{os.getenv('SECRET_KEY')}"
 ckeditor = CKEditor(app)
 gravatar = Gravatar(app)
 Bootstrap5(app)
